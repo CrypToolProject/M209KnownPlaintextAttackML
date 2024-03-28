@@ -1,8 +1,4 @@
-# GitHub Project: Machine Learning Pipeline for Encrypted Data
-
-Welcome to our comprehensive GitHub project, where we explore the intricate process of working with encrypted data using machine learning. This repository houses a collection of Jupyter notebooks, each meticulously designed to guide you through various stages of a machine learning pipeline. From key generation and data encryption to model training and evaluation, these notebooks offer a detailed walkthrough tailored for both novices and seasoned practitioners in the field of machine learning and cybersecurity.
-
-## Overview of Notebooks
+# Overview of Notebooks
 
 Below is a detailed overview of each notebook contained in this repository. It is recommended to follow the notebooks in their numerical order to ensure a seamless experience and understanding of the entire pipeline.
 
@@ -85,6 +81,4 @@ Below is a detailed overview of each notebook contained in this repository. It i
 **Usage Guide:**
 1. With the models trained and the testing data prepared, follow the notebook to test and analyze the performance of your models on encrypted data.
 
-## Conclusion
 
-This repository offers a detailed exploration into the application of machine learning techniques on encrypted data
