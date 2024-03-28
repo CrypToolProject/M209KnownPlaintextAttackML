@@ -1,0 +1,153 @@
+M209 Class
+==========
+
+Naturally, the ``m209`` library includes a class that simulates a M-209
+converter. The :class:`~m209.converter.M209` class allows you to experiment
+with all moving parts of an M-209, including encrypting and decrypting
+messages. Keep in mind there is a higher level class,
+:class:`~m209.procedure.StdProcedure`, that encapsulates all the steps of the
+standard encrypting and decrypting operations, including generating indicators
+and placing or removing them from messages. However if you need lower-level
+access or you are inventing your own procedures, you would use the M209 class
+directly.
+
+.. class:: m209.converter.M209([lugs=None[, pin_list=None]])
+
+   The ``M209`` class takes the following optional arguments.
+
+  :param lugs: either a lug settings list or string as per :meth:`set_drum_lugs`
+  :param pin_list: a list of six strings each formatted as per :ref:`pin-settings`
+
+``M209`` objects have the following attributes.
+
+   .. attribute:: letter_count
+
+      This attribute represents the *letter counter* functionality. It is an
+      integer that is incremented after every letter is encrypted or decrypted.
+      It may be set to any integer value or examined at any time.
+
+``M209`` objects support the following methods.
+
+   .. method:: set_pins(n, effective_pins)
+
+      Sets the pin settings on the specified key wheel ``n``.
+
+      :param n: an integer between 0-5, inclusive. Key wheel 0 is the 
+         left-most wheel and wheel 5 is the right-most.
+
+      :param effective_pins: an iterable of letters whose pins are slid to
+        the "effective" position (to the right). See :ref:`pin-settings`.
+
+   .. method:: set_all_pins(pin_list)
+
+      Sets all key wheel pins according to the supplied pin list.
+
+      :param pin_list: must either be ``None`` or a 6-element list of strings
+         where each string element is as described in :ref:`pin-settings`.
+         If ``None``, all pins in all key wheels are moved to the ineffective position.
+
+   .. method:: set_drum_lugs(lug_list)
+
+      Sets the drum lugs according to the given ``lug_list`` parameter.
+
+      If ``lug_list`` is ``None`` or empty, all lugs will be placed in neutral
+      positions.
+
+      Otherwise, the ``lug_list`` can either be a list or a string.
+
+      If ``lug_list`` is passed a list, it must be a list of 1 or 2-tuple integers,
+      where each integer is between 0-5, inclusive, and represents a 0-based
+      key wheel position. The list can not be longer than 27 items. Only lug
+      bars with lugs in non-neutral positions need be listed. Lug bars with one
+      lug in a non-neutral position are represented by a 1-tuple. Bars with
+      2 non-netural lugs are represented as a 2-tuple.
+
+      If ``lug_list`` is passed as a string, it is assumed to be in key list
+      format as described in :ref:`lug-settings`.
+
+      Example::
+
+         m = M209()
+         m.set_drum_lugs('1-0 2-0*2 0-3 0-5*3 0-6 2-4 3-6')
+
+         # or equivalently
+         m.set_drum_lugs([(0, ), (1, ), (1, ), (2, ), (4, ), (4, ), (4, ), (5, ), (1, 3), (2, 5)])
+
+
+   .. method:: set_key_wheel(n, c)
+
+      Set key wheel ``n`` to the letter ``c``.
+
+      :param n: an integer between 0-5 where key wheel 0 is the leftmost key wheel,
+         and 5 is the rightmost
+      :param c: a 1-letter string valid for key wheel ``n``
+      :raises KeyWheelError: if ``c`` is not valid for wheel ``n``
+
+   .. method:: set_key_wheels(s)
+
+      Set the key wheels from left to right to the six letter string ``s``.
+
+      :raises KeyWheelError: if any letter in ``s`` is not valid for the corresponding key wheel
+
+   .. method:: set_random_key_wheels()
+
+      Sets the six key wheels to random letters.
+
+      :returns: a string of length six representing the new key wheel settings
+
+   .. method:: get_settings()
+
+      Returns the current key settings.
+
+      :returns: a named tuple of ``(lugs, pin_list)`` representing the current
+         key settings. ``lugs`` will be in string format.
+
+   .. method:: encrypt(plaintext[, group=True[, spaces=True]])
+
+      Performs an encrypt operation on the given plaintext and returns the
+      encrypted ciphertext as a string.
+
+      :param plaintext: the text string to encrypt
+      :param group: if ``True``, the ciphertext string will be grouped into 5-letter
+         groups, separated by spaces
+      :param spaces: if ``True``, space characters in the input plaintext will
+         automatically be treated as ``Z`` characters. Otherwise spaces in the
+         plaintext will raise an ``M209Error``.
+      :returns: the ciphertext as a string
+
+   .. method:: decrypt(ciphertext[, spaces=True[, z_sub=True]])
+
+      Performs a decrypt operation on the given ciphertext and returns the
+      decrypted plaintext as a string.
+
+      :param ciphertext: the text string to decyrpt
+      :param spaces: if ``True``, spaces will be allowed in the input ciphertext and
+         ignored. Otherwise space characters will raise an ``M209Error``.
+         This is useful if the input ciphertext is in 5-letter groups, separated
+         by spaces.
+      :param z_sub: if ``True``, ``Z`` characters in the output plaintext will be
+         replaced by space characters, just like an actual M-209.
+      :returns: the plaintext as a string
+
+Example:
+
+>>> from m209.converter import M209
+>>> m = M209()
+>>> m.set_drum_lugs('1-0 2-0*2 0-3 0-5*3 0-6 2-4 3-6')
+>>> pin_list = [
+...     'FGIKOPRSUVWYZ',
+...     'DFGKLMOTUY',
+...     'ADEFGIORTUVX',
+...     'ACFGHILMRSU',
+...     'BCDEFJKLPS',
+...     'EFGHIJLMNP'
+... ]
+>>> m.set_all_pins(pin_list)
+>>> m.set_key_wheels('FFEGJP')
+>>> ct = m.encrypt('THE PIZZA HAS ARRIVED')
+>>> ct
+'QBCHU WCCDI YFNCH LOZJY G'
+>>> m.set_key_wheels('FFEGJP')
+>>> pt = m.decrypt(ct)
+>>> pt
+'THE PI  A HAS ARRIVED'
