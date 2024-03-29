@@ -1,6 +1,6 @@
 # Overview of Notebooks
 
-Below is a detailed overview of each notebook contained in this repository. It is recommended to follow the notebooks in their numerical order to ensure a seamless experience and understanding of the entire pipeline.
+Below is an overview of each notebook contained in this repository. It is recommended to follow the notebooks in their numerical order to ensure a seamless experience and understanding of the entire pipeline.
 
 ### 1. Key Generation for Training Data (`#1_create_keys_train.ipynb`)
 
