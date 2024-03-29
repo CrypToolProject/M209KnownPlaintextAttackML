@@ -35,6 +35,6 @@ For encrypting data, we use an external M-209 implementation found in Brian Neal
 
 2. **Training the Models**: Follow the steps in our training notebooks to develop and train your ANNs.
 
-3. **Testing and Understanding Your Models**: Employ our evaluation notebooks to test your models with fresh datasets and to derive insights from the results.
+3. **Testing and Understanding Your Models**: Employ our evaluation notebook to test your models with fresh datasets and to derive insights from the results.
 
 Check each Jupyter notebook and sequentially run them.
