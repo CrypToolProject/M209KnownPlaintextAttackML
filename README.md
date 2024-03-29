@@ -4,6 +4,10 @@
 
 This project uses Machine Learning (ML),  specifically Artificial Neural Networks (ANNs), for cryptanalysis of the Hagelin M-209, a historical cipher machine. By analyzing pseudo-random displacement values (keystream) accessible from known ciphertext-plaintext pairs, our approach recovers parts of the secret key, focusing on the wheel pins settings. Each ANN takes as an input a fixed-length keystream and predicts one pin of a wheel. 
 
+Regrettably, the same method cannot be straightforwardly applied to retrieve the other portion of the key, namely the bar-lugs positions. The reason is that each of the 27 bars contributes independently to the keystream generation process, and their effects are indistinguishable from one another. Consequently, swapping the settings of any two bar lugs does not alter the keystream production, resulting in a large set of functionally equivalent keys. Therefore, it becomes impractical to train a model to pinpoint a specific key value that would reveal the presence of a lug in a particular position against a wheel on the bar, due to the existence of numerous equivalent keys with contrary values. Hence, an alternative strategy must be considered, which currently remains under development.
+
+
+
 ## How the Code is Organized
 
 Our project's code is in 8 Jupyter notebooks in the `Tools` folder, with each notebook serving a different purpose:
