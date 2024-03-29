@@ -6,6 +6,7 @@ This project uses Machine Learning (ML),  specifically Artificial Neural Network
 
 Regrettably, the same method cannot be straightforwardly applied to retrieve the other portion of the key, namely the bar-lugs positions. The reason is that each of the 27 bars contributes independently to the keystream generation process, and their effects are indistinguishable from one another. Consequently, swapping the settings of any two bar lugs does not alter the keystream production, resulting in a large set of functionally equivalent keys. Therefore, it becomes impractical to train a model to pinpoint a specific key value that would reveal the presence of a lug in a particular position against a wheel on the bar, due to the existence of numerous equivalent keys with contrary values. Hence, an alternative strategy must be considered, which currently remains under development.
 
+The article detailing the attack was accepted for presentation at the Histocrypt 2024 conference. Upon publication, a link to the paper will be made available.
 
 
 ## How the Code is Organized
