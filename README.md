@@ -26,7 +26,7 @@ Our project's code is in 8 Jupyter notebooks in the `Tools` folder, with each no
 
 ## External Encryption Tool
 
-For encrypting data, we use an external M-209 implementation found in Brian Neal's M-209 GitHub Repository. This tool is utilized for accurately simulating the encryption process as performed by the actual Hagelin M-209 machine. The original repository is accessible [here](https://github.com/gremmie/m209). Note that for data organizational reasons, we slightly modified some of this code. Therefore, for correct performance, please use the version available in the folder m209 Brian Neal of our repository.
+For encrypting data, we use an external M-209 implementation found in Brian Neal's M-209 GitHub Repository. This tool is utilized for accurately simulating the encryption process as performed by the actual Hagelin M-209 machine. The original repository is accessible [here](https://github.com/gremmie/m209). Note that for data organizational reasons, we slightly modified some of this code. Therefore, for correct performance, please use the version available in the folder "m209 Brian Neal" of our repository.
 
 
 ## Getting Started
