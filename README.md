@@ -36,7 +36,7 @@ For encrypting data, we use an external M-209 implementation found in Brian Neal
 
 ## Getting Started
 
-1. **Preparing Your Data**: Begin with our notebooks to generate ciphertext data. For a practical example, refer to the dataset used in our published attack available on [Google Drive](https://drive.google.com/drive/folders/1WwmRK_jfHjIxhAG4oxQB2lD8j64mMFW3?usp=sharing). In the same location, our trained models are also available for download, allowing for direct application and further exploration.
+1. **Preparing Your Data**: Begin with our notebooks to generate ciphertext data. For a practical example, refer to the dataset used in our published attack available on [Google Drive](https://drive.google.com/drive/folders/1nimlwVrEOA0rg4mOI7Cd4sWcTvRjfXcZ?usp=sharing). In the same location, our trained models are also available for download, allowing for direct application and further exploration.
 
 2. **Training the Models**: Follow the steps in our training notebooks to develop and train your ANNs.
 
